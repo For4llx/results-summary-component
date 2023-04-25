@@ -1,3 +1,3 @@
-import Summary from "./Summary";
+import Summary from "./summary";
 
 export default Summary

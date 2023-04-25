@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import sum from '../../utils/sum'
 
 const ResultHeading = styled.h1`
   margin-bottom: 2.188rem;
@@ -62,8 +63,8 @@ interface IResult {
 
 function Result({ scores }: IResult) {
   const results = scores.map((score) => score.score)
-  const sum = results.reduce((total, current) => total + current, 0);
-  const resultTotal = Math.round(sum / 4)
+  const sumScore = sum(...results)
+  const resultTotal = Math.round(sumScore / 4)
 
   return (
     <ResultContainer>

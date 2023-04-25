@@ -1,10 +1,9 @@
-import Summary from '../summaryList/SummaryList'
-import Result from '../result/Result'
-import ResultsSummaryContainer from './ResultsSummaryContainer'
 import { fetchScores } from './ResultSummaryAPI'
 import { useQuery } from 'react-query'
 import { useState } from 'react'
-import SummaryList from '../summaryList/SummaryList'
+import Result from '../result/Result'
+import ResultsSummaryContainer from './ResultsSummaryContainer'
+import Summary from '../summary/summary'
 
 interface IScore {
     id: number
@@ -24,7 +23,7 @@ function ResultsSummary() {
     return (
         <ResultsSummaryContainer>
             <Result scores={scores} />
-            <SummaryList scores={scores} />
+            <Summary scores={scores} />
         </ResultsSummaryContainer>
     )
 }
