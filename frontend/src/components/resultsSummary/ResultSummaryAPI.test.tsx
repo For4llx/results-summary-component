@@ -1,6 +1,6 @@
 import { fetchScores } from "./ResultSummaryAPI"
 
-const CategoriesMockData = [
+const mockCategories = [
     {
         "id": 1,
         "category": "Reaction",
@@ -27,7 +27,7 @@ const CategoriesMockData = [
     }
 ]
 
-test("return the categories from databae", async () => {
-    jest.fn().mockRejectedValue(CategoriesMockData)
-    expect(CategoriesMockData).toEqual(CategoriesMockData)
+test("should call fetch with the correct URL", async () => {
+    const categories = await fetchScores();
+    expect(categories).toEqual(mockCategories)
 })
