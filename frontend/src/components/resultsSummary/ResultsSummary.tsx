@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { useState } from 'react'
 import Result from '../result/Result'
 import ResultsSummaryContainer from './ResultsSummaryContainer'
-import Summary from '../summary/summary'
+import Summary from '../summary/Summary'
 
 interface IScore {
     id: number
