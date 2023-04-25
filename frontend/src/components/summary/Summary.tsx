@@ -13,12 +13,12 @@ interface IScore {
 
 interface ISummaryList {
     score: IScore
-    color?: boolean
+    color: string
 }
 
 function Summary({ score, color }: ISummaryList) {
     return (
-        <SummaryContainer red>
+        <SummaryContainer color={color}>
             <SummaryCategory>
                 <SummaryIcon
                     src={score.icon}

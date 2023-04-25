@@ -1,9 +1,6 @@
 import SummaryThemeContainer from './SummaryThemeContainer'
 import SummaryThemeHeading from './SummaryThemeHeading'
 import AppButton from '../app/AppButton'
-import { fetchScores } from './SummaryAPI'
-import { useQuery } from "react-query"
-import { useState } from 'react'
 import Summary from '../summary/Summary'
 import SummaryListContainer from './SummaryListContainer'
 import SummaryListItem from './SummaryListItem'
@@ -15,17 +12,21 @@ interface IScore {
   icon: string
 }
 
-function SummaryList() {
-  const [scores, SetScores] = useState<IScore[]>([])
+interface ISummaryList {
+  scores: Array<IScore>
+}
 
-  useQuery({
-    queryFn: fetchScores,
-    onSuccess: (dataScores: IScore[]) => SetScores(dataScores)
-  })
+function SummaryList({ scores }: ISummaryList) {
 
-  const listCategories = scores.map((score) => (
+  const listCategories = scores.map((score, index) => (
     <SummaryListItem key={score.id}>
       <Summary
+        color={
+          index % 4 === 0 ? "red" :
+            index % 4 === 1 ? "orange" :
+              index % 4 === 2 ? "green" :
+                "blue"
+        }
         score={score}
       />
     </SummaryListItem>
