@@ -3,7 +3,6 @@ import styled from 'styled-components'
 interface ISummaryTheme {
     color: string
 }
-
 export default styled.article<ISummaryTheme>`
     display: flex;
     align-items: center;

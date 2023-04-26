@@ -1,4 +1,5 @@
 import { fetchScores } from "./ResultSummaryAPI"
+import { test, expect, vi, afterEach } from "vitest"
 
 const mockCategories = [
     {
@@ -28,6 +29,16 @@ const mockCategories = [
 ]
 
 test("should call fetch with the correct URL", async () => {
+    afterEach(() => {
+        vi.restoreAllMocks()
+    })
+
+    vi.spyOn(global, 'fetch').mockResolvedValueOnce({
+        json: vi.fn().mockResolvedValueOnce(mockCategories)
+    });
+
     const categories = await fetchScores();
+
+    expect(fetch).toHaveBeenCalledTimes(1);
     expect(categories).toEqual(mockCategories)
 })
