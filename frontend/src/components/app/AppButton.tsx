@@ -10,8 +10,10 @@ cursor: pointer;
   background-color: #303B59;
   height: 56px;
   width: 288px;
+  transition: all 5000ms;
   &:hover {
-    background: linear-gradient(${props => props.theme.colors.gradients.lightSlateBlue}, ${props => props.theme.colors.gradients.lightRoyalBlue});
+    background-image: linear-gradient(${props => props.theme.colors.gradients.lightSlateBlue}, ${props => props.theme.colors.gradients.lightRoyalBlue});
     font-weight: 800;
   }
 `
+

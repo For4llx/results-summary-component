@@ -44,6 +44,10 @@ const ResultsContent = styled.div`
 const ResultScore = styled.h1`
   font-size: ${props => props.theme.typography.fontSize.xl};
   color: ${props => props.theme.colors.neutral.white};
+  transition: transform 400ms;
+  &:hover {
+    transform: scale(1.15);
+    }
 `
 
 const ResultContentHeading = styled.h1`

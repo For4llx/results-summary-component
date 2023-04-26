@@ -18,6 +18,7 @@ function CategoryList({ scores }: ICategoryList) {
   const listCategories = scores.map((score, index) => (
     <CategoryListItem key={score.id}>
       <Category
+        index={index}
         color={
           index % 4 === 0 ? "red" :
             index % 4 === 1 ? "orange" :
