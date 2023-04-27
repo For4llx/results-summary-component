@@ -5,14 +5,12 @@ FROM python:latest
 WORKDIR /app
 
 # Copy local file "requirements.txt" into "app"
-COPY ./requirements.txt /app
+COPY ./backend/requirements.txt /app
 
 # Run an instruction to install all requirements in "requirements.txt"
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Copy all local file into "app"
 COPY . /app
-
-RUN python manage.py collectstatic --noinput
 
 CMD gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT

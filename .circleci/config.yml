@@ -22,10 +22,6 @@ workflows:
   version: 2.1
   deploy_to_heroku:
     jobs:
-      - push_to_docker_hub:
-          requires:
-            - test
-            - lint
       - heroku/deploy-via-git:
           requires:
             - push_to_docker_hub
