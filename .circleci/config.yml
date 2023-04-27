@@ -1,21 +1,8 @@
-jobs:
-  test_frontend:
-    docker:
-      - image: circleci/node:latest
-    steps:
-      - checkout
-      - run:
-          name: install npm packages
-          command: npm install
-      - run:
-          name: vitest
-          command: npm run test
+version: 2.1
+orbs:
+  heroku: circleci/heroku:latest
 
 workflows:
   version: 2.1
   deploy_to_heroku:
-    jobs:
-      - test
-      - heroku/deploy-via-git:
-          requires:
-            - push_to_docker_hub
+    - heroku/deploy-via-git:
