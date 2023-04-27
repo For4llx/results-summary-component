@@ -1,3 +1,4 @@
+import FadeIn from "../animation/FadeIn"
 import AppButton from "../app/AppButton"
 import CategoryList from "../categoryList/CategoryList"
 import SummaryContainer from "./SummaryContainer"
@@ -18,11 +19,21 @@ function Summary({ scores }: ISummary) {
 
     return (
         <SummaryContainer>
-            <SummaryHeading>Summary</SummaryHeading>
+            <FadeIn
+                animartionLength="400ms"
+                animartionDelay='4200ms'
+            >
+                <SummaryHeading>Summary</SummaryHeading>
+            </FadeIn>
             <CategoryList
                 scores={scores}
             />
-            <AppButton>Continue</AppButton>
+            <FadeIn
+                animartionLength="400ms"
+                animartionDelay='6000ms'
+            >
+                <AppButton>Continue</AppButton>
+            </FadeIn>
         </SummaryContainer>
     )
 }
