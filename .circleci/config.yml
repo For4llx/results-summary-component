@@ -1,7 +1,3 @@
-version: 2.1
-orbs:
-  heroku: circleci/heroku:latest
-
 jobs:
   test_frontend:
     docker:
