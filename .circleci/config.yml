@@ -5,4 +5,4 @@ orbs:
 workflows:
   version: 2.1
   deploy_to_heroku:
-    - heroku/deploy-via-git:
+    - heroku/deploy-via-git
