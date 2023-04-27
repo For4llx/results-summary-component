@@ -2,7 +2,30 @@ version: 2.1
 orbs:
   heroku: circleci/heroku:latest
 
+jobs:
+  push_to_docker_hub:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    steps:
+      - checkout
+      - run:
+          name: authentification to docker hub
+          command: echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run:
+          name: build docker image
+          command: docker build -t nobimeromeo/python-oc-lettings:$CIRCLE_BRANCH .
+      - run:
+          name: push docker image
+          command: docker push nobimeromeo/python-oc-lettings:$CIRCLE_BRANCH
+
 workflows:
   version: 2.1
   deploy_to_heroku:
-    - heroku/deploy-via-git
+    jobs:
+      - push_to_docker_hub:
+          requires:
+            - test
+            - lint
+      - heroku/deploy-via-git:
+          requires:
+            - push_to_docker_hub
