@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import sum from '../../utils/sum'
+import FadeIn from '../animation/FadeIn'
 
 const ResultHeading = styled.h1`
   margin-bottom: 2.188rem;
@@ -25,7 +27,6 @@ const Score = styled.div`
   width: 200px;
   height: 200px;
   background: linear-gradient(hsla(256, 71%, 46%, 100%), hsla(241, 71%, 46%, 0));
-
 `
 
 const AppParagraph = styled.div`
@@ -66,28 +67,65 @@ interface IResult {
 }
 
 function Result({ scores }: IResult) {
-  const results = scores.map((score) => score.score)
-  const sumScore = sum(...results)
-  const resultTotal = Math.round(sumScore / 4)
+  const [score, setScore] = useState(0)
+  const [totalScore, setTotalScore] = useState(0)
+  const [intervalState, setIntervalState] = useState<any>()
+
+  useEffect(() => {
+    const results = scores.map((score) => score.score)
+    const sumScore = sum(...results)
+    setTotalScore(Math.round(sumScore / 4))
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setScore(score => score + 1);
+      setIntervalState(interval)
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (score >= totalScore) {
+    clearInterval(intervalState)
+  }
 
   return (
     <ResultContainer>
-      <ResultHeading>
-        Your Result
-      </ResultHeading>
+      <FadeIn
+        animartionLength="400ms"
+        animartionDelay='4200ms'
+      >
+        <ResultHeading>
+          Your Result
+        </ResultHeading>
+      </FadeIn>
       <Score>
-        <ResultScore>
-          {resultTotal}
-        </ResultScore>
+        <FadeIn
+          animartionLength='400ms'>
+          <ResultScore>
+            {score}
+          </ResultScore>
+        </FadeIn>
         <AppParagraph>of 100</AppParagraph>
       </Score>
       <ResultsContent>
-        <ResultContentHeading>
-          Great
-        </ResultContentHeading>
-        <AppParagraph>
-          Your performance exceed 65% of the people conducting the test here!
-        </AppParagraph>
+        <FadeIn
+          animartionLength="400ms"
+          animartionDelay='4300ms'
+        >
+          <ResultContentHeading>
+            Great
+          </ResultContentHeading>
+        </FadeIn>
+        <FadeIn
+          animartionLength="400ms"
+          animartionDelay='4500ms'
+        >
+          <AppParagraph>
+            Your performance exceed 65% of the people conducting the test here!
+          </AppParagraph>
+        </FadeIn>
+
       </ResultsContent>
     </ResultContainer>
   )

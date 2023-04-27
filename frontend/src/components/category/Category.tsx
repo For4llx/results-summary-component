@@ -21,7 +21,9 @@ interface ISummaryList {
 
 function Category({ score, color, index }: ISummaryList) {
     return (
-        <FadeIn animartionLength={(400 * index).toString() + "ms"}>
+        <FadeIn
+            animartionDelay='5000ms'
+            animartionLength={(400 * (index + 1)).toString() + "ms"}>
             <CategoryContainer color={color}>
                 <CategoryName>
                     <CategoryIcon
